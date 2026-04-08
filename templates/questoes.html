@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='questoes.css') }}"
+    />
+    <title>Perguntas</title>
+  </head>
+  <body>
+
+    <h1 class="title">Quiz {{ quiz_id }}</h1>
+
+    <form action="/quiz_{{ quiz_id }}" method="POST">
+        
+      <div class="questao">
+        {% for pergunta in perguntas %}
+
+        <div class="pergunta_box">
+
+          <div class="pergunta">
+            <h2>Pergunta {{ loop.index }}</h2>
+
+            <div class="info">
+              <img
+                src="{{ url_for('static', filename='images.png') }}"
+                class="img"
+              />
+              <span class="tooltip">
+                Essa questão foi tirada do tema: {{ pergunta.tema }} de python orientado a objetos
+              </span>
+            </div>
+          </div>
+
+          <h3>{{ pergunta.texto }}</h3>
+
+          {% for alternativa in alternativas[loop.index0] %}
+          <div class="alternativa">
+            <label>
+              <input 
+                type="radio" 
+                name="pergunta_{{ pergunta.id }}" 
+                value="{{ alternativa.id }}"
+                required
+              >
+              {{ alternativa.texto }}
+            </label>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Enviar Respostas
+      </button>
+
+    </form>
+
+  </body>
+</html>

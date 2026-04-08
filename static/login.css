@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Inter', sans-serif;
+
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+}
+
+/* Container central */
+main {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 15px;
+
+  width: 320px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0;
+
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub_title {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+header h4 {
+  margin: 5px 0 15px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+
+  border-radius: 8px;
+  border: 1px solid #334155;
+
+  background-color: #0f172a;
+  color: #e2e8f0;
+
+  outline: none;
+}
+
+input:focus {
+  border-color: #3b82f6;
+}
+
+/* Botão */
+button {
+  width: 100%;
+  padding: 10px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+
+  cursor: pointer;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Mensagem */
+p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+</head>
+<body>
+    <header class="title">
+        <h1>QUIZ ULTRA MASTER BLASTER</h1>
+    </header>
+
+    <div class="quiz-container">
+        {% for quiz in quizzes %}
+        
+        <form action="quiz_{{quiz.id}}">
+        <div class="quiz_box">
+            <button type="submit">Quiz <br> {{ quiz.id }} <br> Progresso: {{ progresso[quiz.id] }}</button>  
+        </div>
+        </form>
+        {% endfor %}
+        
+    </div>
+</body>
+</html>
