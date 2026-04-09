@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request, session
+
 import modules as m
 import database as db
 import os
@@ -7,7 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+
 app.secret_key = os.getenv('SECRET_KEY')
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
