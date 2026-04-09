@@ -15,7 +15,8 @@ def execute(query, params=()):
     cursor.execute(query, params)
 
     resultado = cursor.fetchall()
-
+    
+    conn.commit()
     conn.close()
 
     return resultado

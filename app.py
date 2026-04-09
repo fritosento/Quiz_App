@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-
+db.create_table()
 app.secret_key = os.getenv('SECRET_KEY')
 
 
@@ -51,11 +51,14 @@ def Quiz():
 @app.route('/quiz_<int:quiz_id>', methods=['GET', 'POST'])
 def questoes(quiz_id):
 
+    user_id = session.get('user_id')
+
+    if request.method == 'GET':
+        m.delete_respostas_quiz(user_id, quiz_id)
+
     perguntas = m.get_perguntas(quiz_id)
 
     if request.method == 'POST':
-        user_id = session.get('user_id')
-
         for pergunta in perguntas:
             resposta = request.form.get(f'pergunta_{pergunta["id"]}')
             if resposta:
@@ -66,11 +69,14 @@ def questoes(quiz_id):
         return redirect('/Quiz')
 
     quizzes = m.get_quizzes()
-    perguntas = m.get_perguntas(quiz_id) 
     alternativas = [m.get_alternativas(pergunta['id']) for pergunta in perguntas]
     
-
-    return render_template('questoes.html', quiz_id=quiz_id, quizzes=quizzes, perguntas=perguntas, alternativas=alternativas)
-
+    return render_template(
+        'questoes.html',
+        quiz_id=quiz_id,
+        quizzes=quizzes,
+        perguntas=perguntas,
+        alternativas=alternativas
+    )
 if __name__ == '__main__':
     app.run(debug=True)

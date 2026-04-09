@@ -1,7 +1,7 @@
 from database import create_connection, create_table
 
 import database as db
-create_table()
+
 
 def get_quizzes():
     conn = create_connection()
@@ -35,6 +35,22 @@ def get_user(login_user):
     user = conn.execute('SELECT * FROM users WHERE username = ?', (login_user,)).fetchone()
     conn.close()
     return user
+
+def delete_respostas_quiz(user_id, quiz_id):
+    query = """
+    SELECT a.id
+    FROM alternativas a
+    JOIN pergunta p ON a.pergunta_id = p.id
+    WHERE p.quiz_id = ?
+    """
+    
+    alternativas = db.execute(query, (quiz_id,))
+
+    for alt in alternativas:
+        db.execute(
+            "DELETE FROM resposta WHERE user_id = ? AND alternativas_id = ?",
+            (user_id, alt["id"])
+        )
 
 def save_resposta(user_id, alternativas_id):
     conn = create_connection()
