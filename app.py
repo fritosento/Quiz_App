@@ -9,9 +9,8 @@ load_dotenv()
 
 app = Flask(__name__)
 db.create_table()
-app.secret_key = "chave_secreta"
 
-
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
